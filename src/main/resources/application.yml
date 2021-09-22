@@ -1,0 +1,39 @@
+###服务启动端口号
+server:
+  port: 8703
+  servlet.context-path: /center
+
+
+spring:
+  jackson:
+    time-zone: Asia/Shanghai
+    serialization:
+      # Date返回前端转时间戳 但不能解决LocalDateTime转时间戳（JacksonCustomizerConfig类解决）
+      write-dates-as-timestamps: true
+  application:
+    name:  interface-test
+  profiles:
+    active: local
+mybatis-plus:
+  mapperLocations: classpath:/mapper/*Mapper.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.yjhealth.center.entity
+  global-config:
+    # 数据库相关配置
+    db-config:
+      # 主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      idType: AUTO
+      # 驼峰下划线转换
+      columnUnderline: true
+      # 数据库大写下划线转换
+      #capital-mode: true
+      # 逻辑删除配置
+      logicDeleteValue: 1
+      logicNotDeleteValue: 0
+      dbType: mysql
+    # 刷新mapper 调试神器
+    refresh: false
+  # 原生配置
+  configuration:
+    mapUnderscoreToCamelCase: true
+    cacheEnabled: false
